@@ -10,11 +10,13 @@ const heroAnimation = () => {
   gsap.registerPlugin(ScrollTrigger);
   const overlay = document.querySelector(".overlay");
   const heroCaption = SplitText.create(".hero_caption-wrapper");
+  const heroTitle = SplitText.create(".hero_heading-1");
+  const titleLine1 = heroTitle.lines[0];
+  const titleLine2 = heroTitle.lines[1];
   const buttonsWrapper = document.querySelector(".hero_buttons-wrapper");
   const heroShowreel = document.querySelector(".hero_lighbox");
   const heroShowreelCaption = document.querySelector(".hero_showreel-caption");
-  const titleLine1 = document.querySelector(".hero_title-line-1");
-  const titleLine2 = document.querySelector(".hero_title-line-2");
+
   const heroSection = document.querySelector(".section_hero");
 
   const tl = gsap.timeline(); // main timeline
@@ -35,7 +37,7 @@ const heroAnimation = () => {
   tl.set(buttonsWrapper.children, { opacity: 0, x: "-100%" });
   tl.set(heroCaption.words, { opacity: 0 });
   tl.set([titleLine1, titleLine2], { overflow: "hidden" });
-  tl.set([titleLine1.children, titleLine2.children], { y: "210%" });
+  tl.set([titleLine1, titleLine2], { y: "210%", opacity: 0 });
 
   ScrollTrigger.create({
     trigger: heroSection,
@@ -47,7 +49,7 @@ const heroAnimation = () => {
 
   tl.to(overlay, { opacity: 0, display: "none" });
   tl.to([heroCaption.words], { opacity: 1, stagger: 0.25, duration: 0.4 });
-  tl.to([titleLine1.children, titleLine2.children], {
+  tl.to([titleLine1, titleLine2], {
     y: "0%",
     opacity: 1,
     stagger: 0.2,
